@@ -10,16 +10,29 @@ Based on the business capability that is mentioned, will be decomposing applicat
 
 So, with that came up with 5 -6 Services viz.
 Customer service - Covered
-Stylist service - Covered
+Stylist service - Covered 
 Stylist Availability service - Covered
 Customer Stylist Booking service - Covered
 Booking History service - Pending (Need to enhance)
+
+Design considerations:
+- Stylist Call Booking - User will see all stylists and pick/choose specific stylist to view their availablity. By default state is maintained as ROOKIE, based on the state update, domain events are triggerd and notified to Booking service. From there on stylist list will be made available to end users based on state=AVAILABLE
+- Replicating the events using kafka and to enable scalability
+- Saga - Started with one module but need enhancements
+- Domain Events, Event Sourcing, CQRS and Streaming - Kafka could be used, but not utilized fully. Instead of re-inventing the wheel, made use of eventuate framework.
+- Thought of using Redis for view/query of stylists and availability but will take it as enhancement
+
+Test Cases - Yet to check-in. Need some cleanup
 
 ## To support Resilient, Faut Tolerant and Scalable design, following approach is followed:
 
 The Customer and Stylist services publish events whenever their data changes. The Booking service subscribes to those events and updates its replica. So that way each and every service is losely coupled and can be scaled based on need basis.
 
-Other items that were on low priority wanted to work on.
+
+
+
+# Miscellaneous
+# Other items that were on low priority wanted to work on.
 
 #### Docker (Docker script is enclosed to sping docker swarm setup using virtual box.)
 
@@ -69,4 +82,7 @@ Enclosed high level architecture
 * [Kafka] - asynchronous microservices messaging.
 * [Swagger] - API documentation
 
+Design and Qualty
+================
+Refer this repo: Code-Quality-and-Design
 
