@@ -22,7 +22,7 @@ Design considerations:
 - Domain Events, Event Sourcing, CQRS and Streaming - Kafka could be used, but not utilized fully. Instead of re-inventing the wheel, made use of eventuate framework.
 - Thought of using Redis for view/query of stylists and availability but will take it as enhancement
 
-Test Cases - Yet to check-in. Need some cleanup
+Test Cases -  Added few testcases and cleanup
 
 ## To support Resilient, Faut Tolerant and Scalable design, following approach is followed:
 
