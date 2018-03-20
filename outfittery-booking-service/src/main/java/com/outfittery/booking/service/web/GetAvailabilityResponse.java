@@ -1,5 +1,6 @@
 package com.outfittery.booking.service.web;
 
+import java.util.Set;
 import java.util.TreeSet;
 
 import com.outfittery.stylist.service.api.utils.TimeSpan;
@@ -7,22 +8,22 @@ import com.outfittery.stylist.service.api.utils.TimeSpan;
 public class GetAvailabilityResponse
 {
 
-    private TreeSet<TimeSpan> availability;
+    private Set<TimeSpan> availability = new TreeSet<TimeSpan>();
 
 
-    public TreeSet<TimeSpan> getAvailability()
+    public Set<TimeSpan> getAvailability()
     {
         return availability;
     }
 
 
-    public void setAvailability(TreeSet<TimeSpan> availability)
+    public void setAvailability(Set<TimeSpan> availability)
     {
         this.availability = availability;
     }
 
 
-    public GetAvailabilityResponse(TreeSet<TimeSpan> availability)
+    public GetAvailabilityResponse(Set<TimeSpan> availability)
     {
         super();
         this.availability = availability;

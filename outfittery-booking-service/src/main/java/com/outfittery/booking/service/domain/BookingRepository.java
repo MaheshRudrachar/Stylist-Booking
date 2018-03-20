@@ -7,8 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface BookingRepository extends CrudRepository<Booking, Long>
 {
 
-    Booking findOne(long bookingId);
+    Booking findById(long bookingId);
 
 
-    Booking findByCustomerId(long stylistId);
+    Booking findByStylistId(long stylistId);
 }

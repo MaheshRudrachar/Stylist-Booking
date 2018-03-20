@@ -19,7 +19,7 @@ public class CustomerService
 
     public void validateBookingForCustomer(long customerId, long bookingId)
     {
-        Customer customer = customerRepository.findOne(customerId);
+        Customer customer = customerRepository.findById(customerId);
         if (customer == null)
             throw new CustomerNotFoundException();
         customer.validateBookingByConsumer();

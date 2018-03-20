@@ -1,6 +1,7 @@
 package com.outfittery.stylist.service.api.events;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,7 +24,7 @@ public class CreateStylistRequest
 
     private String lastName;
     private String email;
-    private Set<TimeRange> stylistShift;
+    private Set<TimeRange> stylistShift = new TreeSet<TimeRange>();
     private StylistState state;
 
 

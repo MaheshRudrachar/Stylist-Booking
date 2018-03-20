@@ -2,13 +2,13 @@ package com.outfittery.booking.service.web;
 
 import com.outfittery.booking.service.domain.Stylist;
 
-public class GetStylistResponse
+public class GetStylistStateResponse
 {
 
     private Stylist stylist;
 
 
-    private GetStylistResponse()
+    private GetStylistStateResponse()
     {
 
     }
@@ -26,7 +26,7 @@ public class GetStylistResponse
     }
 
 
-    public GetStylistResponse(Stylist stylist)
+    public GetStylistStateResponse(Stylist stylist)
     {
         this.stylist = stylist;
     }

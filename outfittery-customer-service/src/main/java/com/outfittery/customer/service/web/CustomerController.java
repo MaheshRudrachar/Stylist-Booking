@@ -14,7 +14,7 @@ import com.outfittery.customer.service.domain.CustomerService;
 import io.eventuate.tram.events.ResultWithEvents;
 
 @RestController
-@RequestMapping(path = "/customers")
+@RequestMapping(path = "/v1/customers")
 public class CustomerController
 {
 

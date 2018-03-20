@@ -2,9 +2,13 @@ package com.outfittery.stylist.service.domain;
 
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import com.outfittery.stylist.service.api.events.StylistState;
 import com.outfittery.stylist.service.api.utils.TimeRange;
@@ -27,7 +31,9 @@ public class Stylist
     private String password;
     private String avatarURL;
     private String phone;
-    private Set<TimeRange> stylistShift;
+
+    @ElementCollection
+    private Set<TimeRange> stylistShift = new TreeSet<TimeRange>();
 
     @Enumerated(EnumType.STRING)
     private StylistState state;
@@ -146,6 +152,20 @@ public class Stylist
     public Long getId()
     {
         return id;
+    }
+
+
+    @Override
+    public boolean equals(Object o)
+    {
+        return EqualsBuilder.reflectionEquals(this, o);
+    }
+
+
+    @Override
+    public int hashCode()
+    {
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
 }

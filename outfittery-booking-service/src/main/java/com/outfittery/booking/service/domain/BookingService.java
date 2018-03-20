@@ -79,7 +79,7 @@ public class BookingService
 
     Booking updateBooking(long bookingId, Function<Booking, List<BookingDomainEvent>> updater)
     {
-        Booking booking = bookingRepository.findOne(bookingId);
+        Booking booking = bookingRepository.findById(bookingId);
         bookingAggregateEventPublisher.publish(booking, updater.apply(booking));
         return booking;
     }

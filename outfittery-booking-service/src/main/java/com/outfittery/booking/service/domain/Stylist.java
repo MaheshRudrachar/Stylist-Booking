@@ -1,6 +1,7 @@
 package com.outfittery.booking.service.domain;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Access;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import com.outfittery.stylist.service.api.events.StylistState;
 import com.outfittery.stylist.service.api.utils.TimeRange;
 
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 
 @Entity
 @Table(name = "booking_service_stylist")
@@ -22,7 +25,10 @@ public class Stylist
     private Long id;
     private String firstName;
     private String lastName;
-    private Set<TimeRange> stylistShift;
+    
+    @ElementCollection
+    private Set<TimeRange> stylistShift = new TreeSet<TimeRange>();
+    
     private StylistState state;
 
 

@@ -1,6 +1,7 @@
 package com.outfittery.stylist.service.api.events;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.outfittery.stylist.service.api.utils.TimeRange;
 

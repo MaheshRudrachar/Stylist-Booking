@@ -6,18 +6,24 @@ import java.time.LocalTime;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-public class TimeRange
+@Embeddable
+@Access(AccessType.FIELD)
+public class TimeRange implements Comparable<TimeRange>
 {
 
     private DayOfWeek day;
     private LocalTime start;
     private LocalTime end;
 
+    public TimeRange() {
+        
+    }
 
     public TimeRange(DayOfWeek day, LocalTime start, LocalTime end)
     {

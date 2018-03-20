@@ -1,6 +1,7 @@
 package com.outfittery.booking.service.api.events;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.outfittery.stylist.service.api.utils.TimeRange;
 
@@ -9,7 +10,7 @@ public class BookingDetails
 
     private long stylistId;
     private long customerId;
-    private Set<TimeRange> bookingSlot;
+    private Set<TimeRange> bookingSlot = new TreeSet<TimeRange>();
 
 
     private BookingDetails()

@@ -11,7 +11,7 @@ import com.outfittery.stylist.service.domain.Stylist;
 import com.outfittery.stylist.service.domain.StylistService;
 
 @RestController
-@RequestMapping(path = "/stylist")
+@RequestMapping(path = "/v1/stylist")
 public class StylistController
 {
 

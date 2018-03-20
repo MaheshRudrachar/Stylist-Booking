@@ -1,7 +1,10 @@
 package com.outfittery.booking.service.web;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,7 @@ import com.outfittery.stylist.service.api.utils.TimeRange;
 import com.outfittery.stylist.service.api.utils.TimeSpan;
 
 @RestController
-@RequestMapping(path = "/availability")
+@RequestMapping(path = "/v1/availability")
 public class StylistAvailabilityController
 {
 
@@ -30,16 +33,15 @@ public class StylistAvailabilityController
     @Autowired
     private BookingRepository bookingRepository;
 
-    private TreeSet<TimeSpan> shifts;
-    private TreeSet<TimeSpan> bookedTimes;
+    private Set<TimeSpan> shifts;
+    private Set<TimeSpan> bookedTimes;
 
 
-    @RequestMapping(path = "/{stylistId}", method = RequestMethod.GET)
-    public ResponseEntity<GetAvailabilityResponse> getStylistAvailability(@PathVariable long stylistId)
+    @RequestMapping(path = "/{stylistId}/{date}", method = RequestMethod.GET)
+    public ResponseEntity<GetAvailabilityResponse> getStylistAvailability(@PathVariable long stylistId, @PathVariable LocalDate date)
     {
-
         Stylist stylist = stylistRepository.findOne(stylistId);
-        Booking booking = bookingRepository.findByCustomerId(stylistId);
+        Booking booking = bookingRepository.findByStylistId(stylistId);
 
         if (stylist == null || booking == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -50,15 +52,17 @@ public class StylistAvailabilityController
 
             for (TimeRange styleShift : stylist.getStylistShift())
             {
-                addShift(styleShift);
+                if (styleShift.getDay().compareTo(date.getDayOfWeek()) == 0)
+                    addShift(styleShift);
             }
 
             for (TimeRange bookingSlot : booking.getBookingSlot())
             {
-                addBooking(bookingSlot);
+                if (bookingSlot.getDay().compareTo(date.getDayOfWeek()) == 0)
+                    addBooking(bookingSlot);
             }
 
-            TreeSet<TimeSpan> availability = getAvailability();
+            Set<TimeSpan> availability = getAvailability();
 
             return new ResponseEntity<>(new GetAvailabilityResponse(availability), HttpStatus.OK);
 
@@ -97,9 +101,9 @@ public class StylistAvailabilityController
     }
 
 
-    public TreeSet<TimeSpan> getAvailability()
+    public Set<TimeSpan> getAvailability()
     {
-        TreeSet<TimeSpan> availability = new TreeSet<TimeSpan>();
+        Set<TimeSpan> availability = new TreeSet<TimeSpan>();
 
         // iterate over shifts
         for (TimeSpan shift : shifts)

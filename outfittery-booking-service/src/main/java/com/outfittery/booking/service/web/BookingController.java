@@ -15,7 +15,7 @@ import com.outfittery.booking.service.domain.BookingRepository;
 import com.outfittery.booking.service.domain.BookingService;
 
 @RestController
-@RequestMapping(path = "/booking")
+@RequestMapping(path = "/v1/booking")
 public class BookingController
 {
 
@@ -41,9 +41,9 @@ public class BookingController
 
 
     @RequestMapping(path = "/{bookingId}", method = RequestMethod.GET)
-    public ResponseEntity<GetBookingResponse> getBooking(@PathVariable long bookngId)
+    public ResponseEntity<GetBookingResponse> getBooking(@PathVariable long bookingId)
     {
-        Booking booking = bookingRepository.findOne(bookngId);
+        Booking booking = bookingRepository.findById(bookingId);
         if (booking == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else

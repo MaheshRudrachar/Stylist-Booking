@@ -26,7 +26,7 @@ public class StylistService
     public Stylist create(CreateStylistRequest request)
     {
         Stylist stylist = new Stylist(request.getFirstName(), request.getLastName(), request.getEmail(),
-            new TreeSet<TimeRange>());
+            request.getStylistShift());
         stylistRepository.save(stylist);
         domainEventPublisher.publish(Stylist.class, stylist.getId(),
             Collections.singletonList(new StylistCreated(request.getFirstName(), request.getLastName(), request.getState(), request.getStylistShift())));

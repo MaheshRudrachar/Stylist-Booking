@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.outfittery.booking.service.domain.Booking;
 import com.outfittery.booking.service.domain.BookingRepository;
+import com.outfittery.booking.service.domain.BookingService;
 import com.outfittery.booking.service.domain.Stylist;
 import com.outfittery.booking.service.domain.StylistRepository;
 import com.outfittery.stylist.service.api.events.StylistState;
@@ -28,13 +29,18 @@ import com.outfittery.stylist.service.api.utils.TimeRange;
 import com.outfittery.stylist.service.api.utils.TimeSpan;
 
 @RestController
-@RequestMapping(path = "/stylist")
+@RequestMapping(path = "/v1/stylist")
 public class StylistController
 {
 
     @Autowired
     private StylistRepository stylistRepository;
 
+    public StylistController(StylistRepository stylistRespository)
+    {
+        this.stylistRepository = stylistRespository;
+    }
+    
 
     @RequestMapping(path = "/{stylistId}", method = RequestMethod.GET)
     public ResponseEntity<GetStylistResponse> getStylist(@PathVariable long stylistId)
@@ -43,7 +49,7 @@ public class StylistController
         if (stylist == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
-            return new ResponseEntity<>(new GetStylistResponse(stylistId), HttpStatus.OK);
+            return new ResponseEntity<>(new GetStylistResponse(stylist), HttpStatus.OK);
 
     }
 

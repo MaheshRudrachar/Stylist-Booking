@@ -2,6 +2,7 @@ package com.outfittery.booking.service.domain;
 
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.*;
 
@@ -38,7 +39,8 @@ public class Booking
 
     private Long stylistId;
 
-    private Set<TimeRange> bookingSlot;
+    @ElementCollection
+    private Set<TimeRange> bookingSlot = new TreeSet<TimeRange>();
 
 
     private Booking()
@@ -54,6 +56,12 @@ public class Booking
         this.stylistId = stylistId;
         this.bookingSlot = bookingSlot;
         this.state = CREATE_PENDING;
+    }
+
+
+    public void setId(Long id)
+    {
+        this.id = id;
     }
 
 
