@@ -36,6 +36,7 @@ The Customer and Stylist services publish events whenever their data changes. Th
 - Get All Stylists - /v1/stylist/all - GET
 - Get Stylist Availability - /v1/{stylistId}/{date} - GET
 - Create Booking - /v1/booking - POST
+- Create Bulk Booking - /v1/booking - POST
 - Get Booking - /v1/{bookingId} - GET
 
 
