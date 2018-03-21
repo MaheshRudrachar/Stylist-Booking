@@ -28,7 +28,15 @@ Test Cases -  Added few testcases and cleanup
 
 The Customer and Stylist services publish events whenever their data changes. The Booking service subscribes to those events and updates its replica. So that way each and every service is losely coupled and can be scaled based on need basis.
 
+## REST APIs
 
+- Create Customer - /v1/customers - POST
+- Create Stylist - /v1/stylist - POST
+- Get Stylist - /v1/stylist/{stylistId} - GET
+- Get All Stylists - /v1/stylist/all - GET
+- Get Stylist Availability - /v1/{stylistId}/{date} - GET
+- Create Booking - /v1/booking - POST
+- Get Booking - /v1/{bookingId} - GET
 
 
 # Miscellaneous
