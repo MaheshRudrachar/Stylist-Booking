@@ -1,5 +1,8 @@
 package com.outfittery.booking.service.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.outfittery.booking.service.api.web.CreateBookingRequest;
 import com.outfittery.booking.service.api.web.CreateBookingResponse;
+import com.outfittery.booking.service.api.web.CreateBulkBookingRequest;
+import com.outfittery.booking.service.api.web.CreateBulkBookingResponse;
 import com.outfittery.booking.service.domain.Booking;
 import com.outfittery.booking.service.domain.BookingRepository;
 import com.outfittery.booking.service.domain.BookingService;
@@ -37,6 +42,19 @@ public class BookingController
         Booking booking = bookingService.createBooking(request.getCustomerId(), request.getStylistId(), request.getBookingSlot());
 
         return new CreateBookingResponse(booking.getId());
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public CreateBulkBookingResponse createBulk(@RequestBody CreateBulkBookingRequest request)
+    {
+        List<Long> bookingIds = new ArrayList<Long>();
+        
+        for(CreateBookingRequest bookingRequest: request.getBulkBookingRequest()) {
+            Booking booking = bookingService.createBooking(bookingRequest.getCustomerId(), bookingRequest.getStylistId(), bookingRequest.getBookingSlot());
+            bookingIds.add(booking.getId());
+        }
+        
+        return new CreateBulkBookingResponse(bookingIds);
     }
 
 

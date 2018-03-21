@@ -3,60 +3,25 @@ package com.outfittery.stylist.service.api.events;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import com.outfittery.stylist.service.api.utils.TimeRange;
 
-public class CreateStylistRequest
+import io.eventuate.tram.events.common.DomainEvent;
+
+public class StylistUpdated implements DomainEvent
 {
 
-    private long stylistId;
     private String firstName;
     private String lastName;
-    private String email;
-    private Set<TimeRange> stylistShift = new TreeSet<TimeRange>();
     private StylistState state;
+    private Set<TimeRange> stylistShift;
 
-    public CreateStylistRequest(String firstName, String lastName, String email, Set<TimeRange> stylistShift)
+
+    public StylistUpdated(String firstName, String lastName, StylistState state, Set<TimeRange> stylistShift)
     {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.stylistShift = stylistShift;
-    }
-
-    public long getStylistId()
-    {
-        return stylistId;
-    }
-
-
-    public void setStylistId(long stylisId)
-    {
-        this.stylistId = stylisId;
-    }
-    
-    public String getEmail()
-    {
-        return email;
-    }
-
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
-
-    public Set<TimeRange> getStylistShift()
-    {
-        return stylistShift;
-    }
-
-
-    public void setStylistShift(Set<TimeRange> stylistShift)
-    {
+        this.state = state;
         this.stylistShift = stylistShift;
     }
 
@@ -70,6 +35,18 @@ public class CreateStylistRequest
     public void setState(StylistState state)
     {
         this.state = state;
+    }
+
+
+    public Set<TimeRange> getStylistShift()
+    {
+        return stylistShift;
+    }
+
+
+    public void setStylistShift(Set<TimeRange> stylistShift)
+    {
+        this.stylistShift = stylistShift;
     }
 
 
@@ -97,8 +74,7 @@ public class CreateStylistRequest
     }
 
 
-    private CreateStylistRequest()
-    {
+    private StylistUpdated()
+    {}
 
-    }
 }

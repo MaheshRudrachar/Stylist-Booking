@@ -2,7 +2,7 @@ package com.outfittery.booking.service.messaging;
 
 import com.outfittery.booking.service.domain.BookingService;
 import com.outfittery.stylist.service.api.events.StylistCreated;
-import com.outfittery.stylist.service.api.events.StylistStateUpdated;
+import com.outfittery.stylist.service.api.events.StylistUpdated;
 
 import io.eventuate.tram.events.subscriber.DomainEventEnvelope;
 import io.eventuate.tram.events.subscriber.DomainEventHandlers;
@@ -23,7 +23,8 @@ public class BookingEventConsumer
     public DomainEventHandlers domainEventHandlers()
     {
         return DomainEventHandlersBuilder.forAggregateType("com.outfittery.stylist.service.domain.Stylist")
-            .onEvent(StylistCreated.class, this::createStylist).onEvent(StylistStateUpdated.class, this::updateStylist)
+            .onEvent(StylistCreated.class, this::createStylist)
+            .onEvent(StylistUpdated.class, this::updateStylist)
             .build();
     }
 
@@ -36,12 +37,12 @@ public class BookingEventConsumer
     }
 
 
-    public void updateStylist(DomainEventEnvelope<StylistStateUpdated> de)
+    public void updateStylist(DomainEventEnvelope<StylistUpdated> de)
     {
 
         String stylistIds = de.getAggregateId();
         long id = Long.parseLong(stylistIds);
-        bookingService.stylistStateUpdated(id, de.getEvent().getUpdatedState());
+        bookingService.stylistStateUpdated(id, de.getEvent().getState());
     }
 
 }

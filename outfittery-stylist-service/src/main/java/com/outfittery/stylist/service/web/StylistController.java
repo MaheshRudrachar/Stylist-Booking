@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.outfittery.stylist.service.api.events.CreateStylistRequest;
+import com.outfittery.stylist.service.api.events.CreateStylistStateRequest;
 import com.outfittery.stylist.service.domain.Stylist;
 import com.outfittery.stylist.service.domain.StylistService;
 
@@ -25,5 +26,11 @@ public class StylistController
         Stylist stylist = stylistService.create(request);
         return new CreateStylistResponse(stylist.getId());
     }
-
+    
+    @RequestMapping(method = RequestMethod.PUT)
+    public CreateStylistStateResponse update(@RequestBody CreateStylistStateRequest request)
+    {
+        Stylist stylist = stylistService.update(request);
+        return new CreateStylistStateResponse(stylist.getId());
+    }
 }

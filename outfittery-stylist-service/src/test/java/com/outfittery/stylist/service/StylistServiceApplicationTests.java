@@ -14,8 +14,11 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.outfittery.stylist.service.api.events.CreateStylistRequest;
+import com.outfittery.stylist.service.api.events.CreateStylistStateRequest;
+import com.outfittery.stylist.service.api.events.StylistState;
 import com.outfittery.stylist.service.api.utils.TimeRange;
 import com.outfittery.stylist.service.web.CreateStylistResponse;
+import com.outfittery.stylist.service.web.CreateStylistStateResponse;
 import com.outfittery.stylist.service.web.StylistWebConfiguration;
 
 import io.eventuate.tram.commands.producer.CommandProducer;
@@ -107,14 +110,28 @@ public class StylistServiceApplicationTests
         Set<TimeRange> ts1 = new TreeSet<TimeRange>();
         ts1.add(t1);
 
-        CreateStylistRequest request = new CreateStylistRequest(
-            "mahesh", "rudrachar", "mahesh.rudrachar@xyz.com", ts1);
+        CreateStylistRequest request = new CreateStylistRequest("mahesh", "rudrachar", "mahesh.rudrachar@xyz.com", ts1);
 
         ResponseEntity<CreateStylistResponse> createstylistResponse = restTemplate.postForEntity(baseUrl("/v1/stylist"), request, CreateStylistResponse.class);
         assertEquals(createstylistResponse.getStatusCode(), HttpStatus.OK);
         assertNotNull(createstylistResponse.getBody().getId());
         
         System.out.println("create stylist response ******"+ createstylistResponse.getBody().getId());
+    }
+    
+    @Test
+    public void shouldUpdateStylist() throws Exception
+    {
+
+        String postUrl = baseUrl("/v1/stylist");
+        
+        CreateStylistStateRequest request = new CreateStylistStateRequest(1L, StylistState.AVAILABLE);
+
+        ResponseEntity<CreateStylistStateResponse> createstylistStateResponse = restTemplate.postForEntity(baseUrl("/v1/stylist"), request, CreateStylistStateResponse.class);
+        assertEquals(createstylistStateResponse.getStatusCode(), HttpStatus.OK);
+        assertNotNull(createstylistStateResponse.getBody().getId());
+        
+        System.out.println("create stylist response ******"+ createstylistStateResponse.getBody().getId());
     }
 
 }
