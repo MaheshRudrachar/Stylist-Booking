@@ -36,9 +36,17 @@ The Customer and Stylist services publish events whenever their data changes. Th
 - Get All Stylists - /v1/stylist/all - GET
 - Get Stylist Availability - /v1/{stylistId}/{date} - GET
 - Create Booking - /v1/booking - POST
-- Create Bulk Booking - /v1/booking - POST
+- Create Bulk Booking - /v1/booking/bulk - POST
 - Get Booking - /v1/{bookingId} - GET
 
+## Bug Fixes
+
+Seperate Branch is maintained for bug fixes (bug-fixes) and not to distrub the main freezed branch (as per discussion)
+
+- Fixed the TimeRange to include even LocalDate so that it can be used to query for Bookings that are made on particular date. Same could be used for calculating stylist availability
+- Fixed the LocalTime and LocalDate parser issue by registering JavaTimeModule to JSON Mapper
+- Added integration test for testing end-to-end Booking flow
+- Cleanup on hibernate classes
 
 # Miscellaneous
 # Other items that were on low priority wanted to work on.
