@@ -40,7 +40,7 @@ public class StylistAvailabilityController
     @RequestMapping(path = "/{stylistId}/{date}", method = RequestMethod.GET)
     public ResponseEntity<GetAvailabilityResponse> getStylistAvailability(@PathVariable long stylistId, @PathVariable LocalDate date)
     {
-        Stylist stylist = stylistRepository.findOne(stylistId);
+        Stylist stylist = stylistRepository.findById(stylistId);
         Booking booking = bookingRepository.findByStylistId(stylistId);
 
         if (stylist == null || booking == null)
@@ -58,7 +58,7 @@ public class StylistAvailabilityController
 
             for (TimeRange bookingSlot : booking.getBookingSlot())
             {
-                if (bookingSlot.getDay().compareTo(date.getDayOfWeek()) == 0)
+                if (bookingSlot.getDate().compareTo(date) == 0)
                     addBooking(bookingSlot);
             }
 

@@ -21,8 +21,8 @@ public class StylistHelper
 
     public static Set<TimeRange> fakeStylistShift()
     {
-        LocalTime start = LocalTime.now();
-        LocalTime end = LocalTime.now();
+        LocalTime start = LocalTime.parse("11:00");
+        LocalTime end = LocalTime.parse("11:30");
         TimeRange t1 = new TimeRange(DayOfWeek.TUESDAY, start, end);
 
         Set<TimeRange> ts1 = new TreeSet<TimeRange>();

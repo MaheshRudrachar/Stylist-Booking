@@ -22,7 +22,7 @@ public class Stylist
 {
 
     @Id
-    private Long id;
+    private long id;
     private String firstName;
     private String lastName;
     
@@ -30,16 +30,20 @@ public class Stylist
     private Set<TimeRange> stylistShift = new TreeSet<TimeRange>();
     
     private StylistState state;
+    
+    public Stylist() {
+        
+    }
 
 
-    public Stylist(Long id, Set<TimeRange> stylistShift)
+    public Stylist(long id, Set<TimeRange> stylistShift)
     {
         this.id = id;
         this.stylistShift = stylistShift;
     }
 
 
-    public Stylist(Long id, String firstName, String lastName, Set<TimeRange> stylistShift, StylistState state)
+    public Stylist(long id, String firstName, String lastName, Set<TimeRange> stylistShift, StylistState state)
     {
         this.id = id;
         this.firstName = firstName;
@@ -73,7 +77,7 @@ public class Stylist
     }
 
 
-    public Long getId()
+    public long getId()
     {
         return id;
     }

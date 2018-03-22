@@ -11,7 +11,7 @@ import com.outfittery.stylist.service.api.events.StylistState;
 public interface StylistRepository extends CrudRepository<Stylist, Long>
 {
 
-    Stylist findOne(Long stylistId);
+    Stylist findById(long stylistId);
     
     @Query("select s from Stylist s where s.state = :state")
     List<Stylist> findByStylistStateReturnList(@Param("state") StylistState state);

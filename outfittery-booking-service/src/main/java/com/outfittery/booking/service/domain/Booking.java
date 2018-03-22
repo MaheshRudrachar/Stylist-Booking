@@ -16,6 +16,9 @@ import io.eventuate.tram.events.ResultWithEvents;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import static com.outfittery.booking.service.api.events.BookingState.CREATE_PENDING;
 import static com.outfittery.booking.service.api.events.BookingState.AUTHORIZED;
 
@@ -27,17 +30,19 @@ public class Booking
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @Version
-    private Long version;
+    private long version;
 
     @Enumerated(EnumType.STRING)
     private BookingState state;
 
-    private Long customerId;
+    private long customerId;
 
-    private Long stylistId;
+    private long stylistId;
+    
+    private LocalDateTime bookingGenerated;
 
     @ElementCollection
     private Set<TimeRange> bookingSlot = new TreeSet<TimeRange>();
@@ -49,29 +54,30 @@ public class Booking
     }
 
 
-    public Booking(Long customerId, Long stylistId, Set<TimeRange> bookingSlot)
+    public Booking(long customerId, long stylistId, Set<TimeRange> bookingSlot)
     {
         super();
         this.customerId = customerId;
         this.stylistId = stylistId;
         this.bookingSlot = bookingSlot;
         this.state = CREATE_PENDING;
+        this.bookingGenerated = LocalDateTime.now();
     }
 
 
-    public void setId(Long id)
+    public void setId(long id)
     {
         this.id = id;
     }
 
 
-    public Long getId()
+    public long getId()
     {
         return id;
     }
 
 
-    public Long getVersion()
+    public long getVersion()
     {
         return version;
     }
@@ -83,13 +89,13 @@ public class Booking
     }
 
 
-    public Long getCustomerId()
+    public long getCustomerId()
     {
         return customerId;
     }
 
 
-    public Long getStylistId()
+    public long getStylistId()
     {
         return stylistId;
     }
@@ -98,6 +104,17 @@ public class Booking
     public Set<TimeRange> getBookingSlot()
     {
         return bookingSlot;
+    }
+    
+    public LocalDateTime getBookingGenerated()
+    {
+        return bookingGenerated;
+    }
+
+
+    public void setBookingGenerated(LocalDateTime bookingGenerated)
+    {
+        this.bookingGenerated = bookingGenerated;
     }
 
 

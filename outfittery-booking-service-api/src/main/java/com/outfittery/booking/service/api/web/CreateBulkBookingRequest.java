@@ -9,22 +9,24 @@ import com.outfittery.stylist.service.api.utils.TimeRange;
 
 public class CreateBulkBookingRequest
 {
-    private List<CreateBookingRequest> bulkBookingRequest = new ArrayList<CreateBookingRequest>();
 
-    public List<CreateBookingRequest> getBulkBookingRequest()
+    private List<CreateBookingRequest> bulkRequest = new ArrayList<CreateBookingRequest>();
+
+    public List<CreateBookingRequest> getBulkRequest()
     {
-        return bulkBookingRequest;
+        return bulkRequest;
     }
 
-    public void setBulkBookingRequest(List<CreateBookingRequest> bulkBookingRequest)
+    public void setBulkRequest(List<CreateBookingRequest> bulkRequest)
     {
-        this.bulkBookingRequest = bulkBookingRequest;
+        this.bulkRequest = bulkRequest;
     }
 
-    public CreateBulkBookingRequest(List<CreateBookingRequest> bulkBookingRequest)
+    public CreateBulkBookingRequest(List<CreateBookingRequest> bulkRequest)
     {
         super();
-        this.bulkBookingRequest = bulkBookingRequest;
+        this.bulkRequest = bulkRequest;
     }
-   
+    
+
 }

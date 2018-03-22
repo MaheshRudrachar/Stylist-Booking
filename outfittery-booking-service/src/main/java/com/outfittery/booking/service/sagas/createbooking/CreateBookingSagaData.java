@@ -5,13 +5,13 @@ import com.outfittery.booking.service.api.events.BookingDetails;
 public class CreateBookingSagaData
 {
 
-    private Long bookingId;
+    private long bookingId;
 
     private BookingDetails bookingDetails;
     private long stylistBookingId;
 
 
-    public Long getBookingId()
+    public long getBookingId()
     {
         return bookingId;
     }
@@ -21,7 +21,7 @@ public class CreateBookingSagaData
     {}
 
 
-    public CreateBookingSagaData(Long bookingId, BookingDetails bookingDetails)
+    public CreateBookingSagaData(long bookingId, BookingDetails bookingDetails)
     {
         this.bookingId = bookingId;
         this.bookingDetails = bookingDetails;
@@ -34,7 +34,7 @@ public class CreateBookingSagaData
     }
 
 
-    public void setBookingId(Long bookingId)
+    public void setBookingId(long bookingId)
     {
         this.bookingId = bookingId;
     }

@@ -17,14 +17,14 @@ import java.util.TreeSet;
 public class BookingHelper
 {
 
-    public static long FAKE_CUSTOMER_ID = 1511L;
+    public static long FAKE_CUSTOMER_ID = 1511300065921L;
 
     public static final int FAKE_QUANTITY = 5;
 
     public static final BookingDetails FAKE_BOOKING_DETAILS = new BookingDetails(FAKE_CUSTOMER_ID, FAKE_STYLIST_ID,
         fakeBookingSlot());
 
-    public static long FAKE_BOOKING_ID = 99L;
+    public static long FAKE_BOOKING_ID = 1L;
 
     public static Booking FAKE_BOOKING = makeFakeBooking();
 
@@ -34,8 +34,10 @@ public class BookingHelper
     {
         LocalTime start = LocalTime.parse("11:00");
         LocalTime end = LocalTime.parse("11:30");
-        TimeRange t1 = new TimeRange(DayOfWeek.TUESDAY, start, end);
-
+        LocalDate date = LocalDate.now();
+        
+        TimeRange t1 = new TimeRange(DayOfWeek.TUESDAY, start, end, date);
+        
         Set<TimeRange> ts1 = new TreeSet<TimeRange>();
         ts1.add(t1);
 

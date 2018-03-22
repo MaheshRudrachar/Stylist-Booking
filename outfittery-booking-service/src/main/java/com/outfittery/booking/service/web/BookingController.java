@@ -44,12 +44,12 @@ public class BookingController
         return new CreateBookingResponse(booking.getId());
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(path = "/bulk", method = RequestMethod.POST)
     public CreateBulkBookingResponse createBulk(@RequestBody CreateBulkBookingRequest request)
     {
         List<Long> bookingIds = new ArrayList<Long>();
         
-        for(CreateBookingRequest bookingRequest: request.getBulkBookingRequest()) {
+        for(CreateBookingRequest bookingRequest: request.getBulkRequest()) {
             Booking booking = bookingService.createBooking(bookingRequest.getCustomerId(), bookingRequest.getStylistId(), bookingRequest.getBookingSlot());
             bookingIds.add(booking.getId());
         }

@@ -46,7 +46,7 @@ public class BookingService
 
     public Booking createBooking(long customerId, long stylistId, Set<TimeRange> bookingSlot)
     {
-        Stylist stylist = stylistRepository.findOne(stylistId);
+        Stylist stylist = stylistRepository.findById(stylistId);
         if (stylist == null)
             throw new RuntimeException("Stylist not found: " + stylistId);
 
@@ -72,7 +72,7 @@ public class BookingService
 
     public void stylistStateUpdated(long id, StylistState state)
     {
-        Stylist stylist = stylistRepository.findOne(id);
+        Stylist stylist = stylistRepository.findById(id);
         stylist.setState(state);
     }
 

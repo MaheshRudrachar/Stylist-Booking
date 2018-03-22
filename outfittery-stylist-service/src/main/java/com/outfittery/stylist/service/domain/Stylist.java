@@ -23,7 +23,7 @@ public class Stylist
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     private String firstName;
     private String lastName;
@@ -149,7 +149,7 @@ public class Stylist
     }
 
 
-    public Long getId()
+    public long getId()
     {
         return id;
     }

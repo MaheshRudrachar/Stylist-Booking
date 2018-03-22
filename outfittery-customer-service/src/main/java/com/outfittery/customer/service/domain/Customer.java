@@ -12,7 +12,7 @@ public class Customer
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -132,7 +132,7 @@ public class Customer
     }
 
 
-    public Long getId()
+    public long getId()
     {
         return id;
     }

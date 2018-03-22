@@ -24,7 +24,7 @@ public class ValidateBookingByCustomer implements Command
     }
 
 
-    public Long getBookingId()
+    public long getBookingId()
     {
         return bookingId;
     }

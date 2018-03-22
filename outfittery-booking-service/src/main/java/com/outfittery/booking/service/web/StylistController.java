@@ -45,7 +45,7 @@ public class StylistController
     @RequestMapping(path = "/{stylistId}", method = RequestMethod.GET)
     public ResponseEntity<GetStylistResponse> getStylist(@PathVariable long stylistId)
     {
-        Stylist stylist = stylistRepository.findOne(stylistId);
+        Stylist stylist = stylistRepository.findById(stylistId);
         if (stylist == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else

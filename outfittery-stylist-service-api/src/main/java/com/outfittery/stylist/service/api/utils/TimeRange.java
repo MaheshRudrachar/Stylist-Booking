@@ -2,6 +2,7 @@ package com.outfittery.stylist.service.api.utils;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Access;
@@ -20,7 +21,7 @@ public class TimeRange implements Comparable<TimeRange>
     private DayOfWeek day;
     private LocalTime start;
     private LocalTime end;
-
+    private LocalDate date;
     public TimeRange() {
         
     }
@@ -30,6 +31,15 @@ public class TimeRange implements Comparable<TimeRange>
         this.day = day;
         this.start = start;
         this.end = end;
+        this.date = LocalDate.now();
+    }
+    
+    public TimeRange(DayOfWeek day, LocalTime start, LocalTime end, LocalDate date)
+    {
+        this.day = day;
+        this.start = start;
+        this.end = end;
+        this.date = date;
     }
 
 
@@ -78,6 +88,15 @@ public class TimeRange implements Comparable<TimeRange>
         this.end = time;
     }
 
+    public LocalDate getDate()
+    {
+        return date;
+    }
+
+    public void setDate(LocalDate date)
+    {
+        this.date = date;
+    }
 
     /**
      * Helper to format data types to Strings for processing

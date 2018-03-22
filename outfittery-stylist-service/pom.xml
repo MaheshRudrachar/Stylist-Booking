@@ -103,6 +103,11 @@
 			<artifactId>eventuate-tram-test-util</artifactId>
 			<version>0.5.0.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
