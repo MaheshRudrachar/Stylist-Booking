@@ -50,7 +50,7 @@ So, chosen microservices based design for implementing this project and decompos
 
 ### Architecture Diagram
 
-![alt text](https://github.com/MaheshRudrachar/Stylist-Booking/edit/master/img.png)
+![alt text](https://github.com/MaheshRudrachar/Stylist-Booking/blob/master/Stylist%20Booking%20Architecture.png)
 
 ### Technology stack
 
