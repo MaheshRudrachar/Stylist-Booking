@@ -50,6 +50,8 @@ So, chosen microservices based design for implementing this project and decompos
 
 ### Architecture Diagram
 
+![alt text](https://github.com/MaheshRudrachar/Stylist-Booking/edit/master/img.png)
+
 ### Technology stack
 
 1. [SpringBoot] - Application framework
