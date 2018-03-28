@@ -1,4 +1,4 @@
-# About Microservices Project
+# About Stylist Booking Microservices Project
 
 This project demonstrates booking system to book stylist during the process of online shopping of clothes (esp. for Men)
 
@@ -14,64 +14,66 @@ With the given fact that the stylist booking application will be internet facing
 
 So, chosen microservices based design for implementing this project and decomposed application into microservices using business capabilities that are provided (with limited scope). Following are the business services.
 
- - Customer service - Covered
- - Stylist service - Covered 
- - Stylist Availability service - Covered
- - Customer Stylist Booking service - Covered
- - Booking History service - Pending (Need to enhance)
+ 1. Customer service - Covered
+ 2. Stylist service - Covered 
+ 3. Stylist Availability service - Covered
+ 4. Customer Stylist Booking service - Covered
+ 5. Booking History service - Pending (Need to enhance)
  
 ### Usecase flow
- - Customer should be able to see all stylists and pick/choose specific stylist to view their availablity.
- - By default, the state of stylist is maintained as ROOKIE (not able to attend any customer calls), based on the state update, domain events are triggerd and notified to the Booking service. From there on stylist list will be made available to customers based on state AVAILABLE.
- - Customer book stylist for a given time slot.
- - To bring in async nature Replication is used so that whenever there is a change in business domain aggregate a notification will be sent to the respecitive subscribers using kafka and data gets replicated. With this approach as soon as the customer books stylist, with the available replicated data booking service will go ahead and places the order in PENDING state and return back response to the customer. In an async manner data gets validated with other dependent services using saga transactions and eventually data consistancy is maintained throughout the lifecycle of shopping.
- - Customer gets notification as and when the state machine changes it state.
+
+ 1. Customer should be able to see all stylists and pick/choose specific stylist to view their availablity.
+ 2. By default, the state of stylist is maintained as ROOKIE (not able to attend any customer calls), based on the state update, domain events are triggerd and notified to the Booking service. From there on stylist list will be made available to customers based on state AVAILABLE.
+ 3. Customer book stylist for a given time slot.
+ 4. To bring in async nature Replication is used so that whenever there is a change in business domain aggregate a notification will be sent to the respecitive subscribers using kafka and data gets replicated. With this approach as soon as the customer books stylist, with the available replicated data booking service will go ahead and places the order in PENDING state and return back response to the customer. In an async manner data gets validated with other dependent services using saga transactions and eventually data consistancy is maintained throughout the lifecycle of shopping.
+ 5. Customer gets notification as and when the state machine changes it state.
+ 6. Customer should be able to view their booking history
  
 ### Design considerations
 
-Async message based communication
- - Point-to-point and publish/subsribe
- - Scaling consumers (Kafka shards)
- - Handling duplicate messages
- - Replicate data
- - Finish processing after returning response
+1. Async message based communication
+   - Point-to-point and publish/subsribe
+   - Scaling consumers (Kafka shards)
+   - Handling duplicate messages
+   - Replicate data
+   - Finish processing after returning response
 
-Transactional messaging (Tram)
- - Updating and sending message within transaction
+2. Transactional messaging (Tram)
+   - Updating and sending message within transaction
 
-Managing transactions using Sagas (No 2PC)
- - Maintain data consistency
- - Orchestration based – state machine
-   - Sagaorchestrationpackage, sagaparticipantpackage
+3. Managing transactions using Sagas (No 2PC)
+   - Maintain data consistency
+   - Orchestration based – state machine
+     - Sagaorchestrationpackage, sagaparticipantpackage
 
-Optimistic locking
+4. Optimistic locking
 
 ### Architecture Diagram
 
 ### Technology stack
 
-* [SpringBoot] - Application framework
- - Starter web – embedded tomcat
- - Starter Actuator – health monitoring
- - Starter JPA
+1. [SpringBoot] - Application framework
+   - Starter web – embedded tomcat
+   - Starter Actuator – health monitoring
+   - Starter JPA
 
-* Eventuate Framework
- - Transaction messaging
- - Saga for orchestrated transaction management
- - Kafka based messaging
+2. Eventuate Framework
+   - Transaction messaging
+   - Saga for orchestrated transaction management
+   - Kafka based messaging
  
-* Testing
- - Rest-assured
- - Spring contract
- - Starter test
+3. Testing
+   - Rest-assured
+   - Spring contract
+   - Starter test
 
-* [Docker] - Containerization platform
- - Docker Swarm for cluster formation
- - Docker Compose for managing deployment
+4. [Docker] - Containerization platform
+   - Docker Swarm for cluster formation
+   - Docker Compose for managing deployment
  
-* [Kafka] - asynchronous microservices messaging.
+5. [Kafka] - asynchronous microservices messaging.
 
-* [Swagger] - API documentation
+6. [Swagger] - API documentation
 
 ### Design and Qualty
 
